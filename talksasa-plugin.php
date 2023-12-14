@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name:Talksasa SMS Plugin
-Description:This is Talksasa's custom plugin for sending an sms when an order status is changed or an order note is sent.
+Description:This is a custom Wordpress plugin for sending an sms when an order status is changed or an order note is sent using Talksasa sms API
 Version: 1.0
 Author: Andrew Muchiri
 */
@@ -20,7 +20,7 @@ function handleNewOrderStatus($order_id, $old_status, $new_status, $order)
 {
     $my_order = wc_get_order($order_id);//get the order object
     $firstname = $my_order->get_billing_first_name(); // firstname
-    $phone     = $my_order->get_billing_phone(); // Phone
+    $phone = $my_order->get_billing_phone(); // Phone
     $default_sms_message = "Thank you $firstname for shopping with us. Your Order #$order_id is $new_status";
     sendSms($phone, $default_sms_message);
 }
