@@ -7,9 +7,7 @@ Author: Andrew Muchiri
 */
 
 require __DIR__ . '/vendor/autoload.php';
-
 use Dotenv\Dotenv;
-
 $dotenv = Dotenv::createMutable(__DIR__);
 $dotenv->load();
 
@@ -46,10 +44,8 @@ $dotenv->load();
 
     if ( ! $phone ) {
         return 'no mobile number found';
-    }
-
+    } else {
 	$baseurl = "https://bulksms.talksasa.com/api/v3/sms/send";
-
     $ch = curl_init($baseurl);
     $data = array(
         "recipient" => $phone,
@@ -63,6 +59,7 @@ $dotenv->load();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $result = json_encode(curl_exec($ch));
     curl_close($ch);
+    }
  }
 
 
